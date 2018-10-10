@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Title} from './components/title';
-import {Form} from './components/form';
-import {Weather} from './components/weather';
+import Title from './components/title';
+import Form from './components/form';
+import Weather from './components/weather';
 import {Grid, Cell} from 'react-mdl';
 
 class App extends Component {
@@ -20,8 +20,8 @@ class App extends Component {
     Api_Key:"5959396a0bd213f7c25fb4f079ecbbed",
   }
 
-  changeState = (city,country,response) => {
-    if(city && country){
+  changeState = (response) => {
+    if(response.cod === 200){
       this.setState({
         temperature: response.main.temp,
         city: response.name,
@@ -37,7 +37,7 @@ class App extends Component {
     }
     else {
       this.setState({
-        error: "Please enter the values..."
+        error: "Please enter correct values..."
       })
     }
   }
@@ -50,7 +50,7 @@ class App extends Component {
     const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${Api_Key}&units=metric`);
     const response = await api_call.json();
     console.log('current weather',response);
-    this.changeState(city,country,response);
+    this.changeState(response);
   }
     
   toFahrenheit = async () => {
@@ -60,17 +60,17 @@ class App extends Component {
     const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${Api_Key}&units=imperial`);
     const response = await api_call.json();
     console.log('current weather',response);
-    this.changeState(city,country,response);
+    this.changeState(response);
   }
 
   toCelcius = async () => {
-    const Api_Key="5959396a0bd213f7c25fb4f079ecbbed";
+    const Api_Key=this.state.Api_Key;
     const city = this.state.city;
     const country = this.state.country;
     const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${Api_Key}&units=metric`);
     const response = await api_call.json();
     console.log('current weather',response);
-    this.changeState(city,country,response);
+    this.changeState(response);
   }
 
   render() {
@@ -92,7 +92,6 @@ class App extends Component {
                 minTemp={this.state.minTemp}
                 maxTemp={this.state.maxTemp}
                 wind={this.state.wind}
-                date={this.state.date}
                 description={this.state.description}
                 error={this.state.error}
                 toFahrenheit={this.toFahrenheit}

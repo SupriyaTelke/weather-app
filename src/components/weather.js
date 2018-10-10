@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, Cell, Card, CardActions, CardText, Button, CardTitle, CardMenu} from 'react-mdl';
+import { Card, CardActions, CardText, Button, CardTitle, CardMenu} from 'react-mdl';
 
 
 export class Weather extends React.Component {
@@ -20,11 +20,8 @@ export class Weather extends React.Component {
     render(){
         return(
             <div className="weather-info">
-                {
-                    this.props.error && <p className="weather__error">{this.props.error}</p>
-                } 
-
-                {
+                {this.props.error ? <p className="weather__error">{this.props.error}</p>
+                    :
                     this.props.city && this.props.temperature &&
                     <div className="weather-grid">
                         <Card shadow={5} style={{width:"700px" ,height:"400px" , background:"url(https://hdwallpaperim.com/wp-content/uploads/2017/08/24/103834-simple_background-748x421.jpg) center / cover"}}>

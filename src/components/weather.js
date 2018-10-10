@@ -24,7 +24,7 @@ export class Weather extends React.Component {
                     :
                     this.props.city && this.props.temperature &&
                     <div className="weather-grid">
-                        <Card shadow={5} style={{width:"700px" ,height:"400px" , background:"url(https://hdwallpaperim.com/wp-content/uploads/2017/08/24/103834-simple_background-748x421.jpg) center / cover"}}>
+                        <Card shadow={5} style={{width:"70%" ,height:"400px" , background:"url(https://hdwallpaperim.com/wp-content/uploads/2017/08/24/103834-simple_background-748x421.jpg) center / cover"}}>
                             <CardTitle  style={{color:'#fff', height:"100px"}}>
                                 <span className="weather__value">  {this.props.city}, {this.props.country}</span>
                             </CardTitle>

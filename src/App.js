@@ -13,7 +13,6 @@ class App extends Component {
     minTemp: undefined,
     maxTemp: undefined,
     wind: undefined,
-    date: undefined,
     humidity: undefined,
     description: undefined,
     error: undefined,
@@ -29,7 +28,6 @@ class App extends Component {
         minTemp: response.main.temp_min,
         maxTemp: response.main.temp_max,
         wind: response.wind.speed,
-        date: response.dt,
         humidity: response.main.humidity,
         description: response.weather[0].description,
         error: ""
